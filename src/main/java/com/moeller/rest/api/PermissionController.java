@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * Created by Bernd on 25.08.2016.
@@ -27,11 +28,15 @@ public class PermissionController {
     @Context
     private HttpHeaders httpHeaders;
 
+    @Context
+    private UriInfo uriInfo;
+
     @GET
     @Produces("application/json")
     public Permission getPerm(@PathParam("permissionId") long permissionId){
         LOGGER.debug("provide Permission");
 
+        LOGGER.info(uriInfo.getPath());
         LOGGER.info(httpHeaders.getHeaderString("MyHead"));
 
         if(permissionId>=1000) {
