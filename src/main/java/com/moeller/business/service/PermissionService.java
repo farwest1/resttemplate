@@ -5,6 +5,7 @@ import com.moeller.rest.dto.Permission;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by Bernd on 27.08.2016.
@@ -17,5 +18,9 @@ public class PermissionService {
 
     public Permission getPermission(long id){
         return permissionRepository.findPermissionById(id);
+    }
+
+    public List<Permission> getAllPermissions(){
+        return permissionRepository.findPermissions();
     }
 }

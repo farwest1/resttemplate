@@ -9,6 +9,12 @@ public class Permission {
     private long permissionId;
     private String permissionName;
 
+    public Permission(){};
+    public Permission(long permissionId, String permissionName){
+        this.permissionId = permissionId;
+        this.permissionName = permissionName;
+    }
+
     public long getPermissionId() {
         return permissionId;
     }
