@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 
 /**
  * Created by Bernd on 25.08.2016.
@@ -17,18 +17,27 @@ import javax.ws.rs.Produces;
  * The Controller for the Permission Ressource
  */
 @ApplicationScoped
-@Path(value = "permission")
+@Path("permission/{permissionId}")
 public class PermissionController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PermissionController.class);
 
     @Inject
     private PermissionService permissionService;
 
+    @Context
+    private HttpHeaders httpHeaders;
+
     @GET
     @Produces("application/json")
-    public Permission getPerm(){
+    public Permission getPerm(@PathParam("permissionId") long permissionId){
         LOGGER.debug("provide Permission");
 
-        return permissionService.getPermission(2);
+        LOGGER.info(httpHeaders.getHeaderString("MyHead"));
+
+        if(permissionId>=1000) {
+            throw new NotFoundException("Ressource " + permissionId + " was not found");
+        }
+
+        return permissionService.getPermission(permissionId);
     }
 }
