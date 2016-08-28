@@ -2,11 +2,10 @@ package com.moeller.business.service;
 
 import com.moeller.business.dao.PermissionRepository;
 import com.moeller.common.Service;
-import com.moeller.rest.dto.Permission;
+import com.moeller.rest.dto.PermissionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -20,12 +19,12 @@ public class PermissionService {
     @Inject
     PermissionRepository permissionRepository;
 
-    public Permission getPermission(long id){
-        LOGGER.info("get Permission by Id");
+    public PermissionDto getPermission(long id){
+        LOGGER.info("get PermissionDto by Id");
         return permissionRepository.findPermissionById(id);
     }
 
-    public List<Permission> getAllPermissions(){
+    public List<PermissionDto> getAllPermissions(){
         return permissionRepository.findPermissions();
     }
 }

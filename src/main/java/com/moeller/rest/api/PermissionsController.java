@@ -1,7 +1,7 @@
 package com.moeller.rest.api;
 
 import com.moeller.business.service.PermissionService;
-import com.moeller.rest.dto.Permission;
+import com.moeller.rest.dto.PermissionDto;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -22,7 +22,7 @@ public class PermissionsController {
 
     @GET
     @Produces("application/json")
-    public List<Permission> getPermissions(){
+    public List<PermissionDto> getPermissions(){
         return permissionService.getAllPermissions();
     }
 }

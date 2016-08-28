@@ -5,12 +5,12 @@ package com.moeller.rest.dto;
  *
  *  This is the DTO for Permmisions
  */
-public class Permission {
+public class PermissionDto {
     private long permissionId;
     private String permissionName;
 
-    public Permission(){};
-    public Permission(long permissionId, String permissionName){
+    public PermissionDto(){};
+    public PermissionDto(long permissionId, String permissionName){
         this.permissionId = permissionId;
         this.permissionName = permissionName;
     }

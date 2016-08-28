@@ -1,7 +1,7 @@
 package com.moeller.rest.api;
 
 import com.moeller.business.service.PermissionService;
-import com.moeller.rest.dto.Permission;
+import com.moeller.rest.dto.PermissionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ import javax.ws.rs.core.UriInfo;
 /**
  * Created by Bernd on 25.08.2016.
  *
- * The Controller for the Permission Ressource
+ * The Controller for the PermissionDto Ressource
  */
 @ApplicationScoped
 @Path("permission/{permissionId}")
@@ -33,8 +33,8 @@ public class PermissionController {
 
     @GET
     @Produces("application/json")
-    public Permission getPerm(@PathParam("permissionId") long permissionId){
-        LOGGER.debug("provide Permission");
+    public PermissionDto getPerm(@PathParam("permissionId") long permissionId){
+        LOGGER.debug("provide PermissionDto");
 
         LOGGER.info(uriInfo.getPath());
         LOGGER.info(httpHeaders.getHeaderString("MyHead"));

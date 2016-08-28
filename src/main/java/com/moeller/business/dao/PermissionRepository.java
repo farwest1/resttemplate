@@ -1,8 +1,12 @@
 package com.moeller.business.dao;
 
-import com.moeller.rest.dto.Permission;
+import com.moeller.business.domain.Permission;
+import com.moeller.rest.dto.PermissionDto;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +16,25 @@ import java.util.List;
 @ApplicationScoped
 public class PermissionRepository {
 
-    public Permission findPermissionById(long id){
-        Permission permission = new Permission();
-        permission.setPermissionId(id);
-        permission.setPermissionName("open shift");
-        return permission;
+    @PersistenceContext(unitName = "primary")
+    EntityManager entityManager;
+
+    public PermissionDto findPermissionById(long id){
+        PermissionDto permissionDto = new PermissionDto();
+        permissionDto.setPermissionId(id);
+        permissionDto.setPermissionName("open shift");
+        TypedQuery<Permission> query =
+                    entityManager.createQuery("select p from Permission  p where p.id = :id", Permission.class);
+        query.setParameter("id", id);
+        query.getSingleResult();
+        return permissionDto;
     }
 
-    public List<Permission> findPermissions(){
-        List<Permission> permissionList = new ArrayList<Permission>();
-        permissionList.add(new Permission(1,"Perm1"));
-        permissionList.add(new Permission(2,"Perm2"));
+    public List<PermissionDto> findPermissions(){
+        List<PermissionDto> permissionDtoList = new ArrayList<PermissionDto>();
+        permissionDtoList.add(new PermissionDto(1,"Perm1"));
+        permissionDtoList.add(new PermissionDto(2,"Perm2"));
 
-        return permissionList;
+        return permissionDtoList;
     }
 }
